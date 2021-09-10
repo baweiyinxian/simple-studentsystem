@@ -1,0 +1,170 @@
+#include<stdio.h>
+#include<malloc.h>
+#include<string.h>
+struct student
+{
+
+	char name[100];
+	int age;
+	float score;
+	char sex;
+};
+void f(struct student * f, int plen)//输入函数
+{
+
+	int i;
+	for(i=0; i<plen; ++i)
+	{
+	
+	
+		
+		printf("请输入姓名:\n");
+		scanf("%s",f[i].name );
+		printf("请输入年龄:\n");
+		scanf("%d",&f[i].age );
+		printf("请输入分数:\n");
+		scanf("%f",&f[i].score );
+		printf("请输入性别(男性用m表示，女性用f表示):\n");
+		scanf("%s",&f[i].sex );
+
+
+	}
+}
+
+void c(struct student *c, int clen)//查找函数
+{
+
+	int m;
+	int i;
+	char name1[100];
+	printf("请输入你要查找的名字\n");
+	scanf("%s",name1);
+	for(i=0; i<clen; ++i)
+	{
+	
+		m = strcmp(c[i].name,name1);
+		if(0 == m)//error
+		{	printf("%s",c[i].name );
+		    printf("%d",c[i].age );
+		    printf("%f",c[i].score );
+		    printf("%c",c[i].sex );
+		}
+	}
+
+}
+
+void g(struct student * g ,int glen)//输出函数
+{
+
+	int i;
+	for(i=0; i< glen; ++i)
+	{
+		printf("名字：%s\n",g[i].name );
+		printf("年龄：%d\n",g[i].age );
+		printf("分数：%f\n",g[i].score );
+		printf("性别：%c\n",g[i].sex );
+	}
+}
+void n(struct student * n, int nlen)//删除函数
+{
+	int m;
+	int z;
+	int i;
+	char name1[100];
+	printf("请输入你要删除信息人的的名字\n");
+	scanf("%s",name1);
+	for(i=0; i<=nlen-1; ++i)
+	{
+		z = strcmp(n[i].name ,name1);
+
+		if(0 == z)
+		{
+		
+			for(m=i;m<=nlen-2; ++m)
+			{
+			
+				n[m] = n[m+1];
+
+
+			}
+		}
+	}
+}
+
+void m(struct student * m, int mlen)//升序函数
+{
+	struct student t;
+
+	int i,j;
+	for(i=0; i<mlen-1; ++i)
+	{
+	
+		for(j=0; j<mlen-1-i;++j)
+		{
+		
+			if(m[i].score > m[i+1].score )
+			{
+				t = m[i];
+				m[i] = m[i+1];
+				m[i+i] = t;
+
+			}
+		}
+	}
+	printf("排序已完成\n");
+}
+
+int main(void)
+{
+
+	int val;
+	struct student * parr;
+	int len;
+    int i;
+	printf("请输入学生个数:\n");
+	scanf("%d",&len);
+
+	parr = (struct student *)malloc(len * sizeof(struct student));
+
+	for(i=0; i<1; i=i+0)
+
+{	 
+		
+	printf("输入学生信息请输入 1 \n");
+	printf("查找学生信息请输入 2 \n");
+	printf("输出学生信息请输入 3 \n");
+	printf("删除学生信息请输入 4 \n");
+	printf("对学生成绩排序请输入 5\n");
+    printf("输入其他数字以退出\n");
+	scanf("%d", &val);
+		
+		
+		
+		
+		switch (val)
+
+	{
+	
+        case 1:
+			f(parr,len);//输入函数
+			break;
+        case 2:
+			c(parr,len);//查找函数
+			break;
+        case 3:
+			g(parr,len);//输出
+			break;
+        case 4:
+			n(parr,len);//删除
+			break;
+        case 5:
+            m(parr,len);//排序
+			break;
+		default:
+			i = 1;
+			break;
+	}
+
+}
+	return 0;
+}
